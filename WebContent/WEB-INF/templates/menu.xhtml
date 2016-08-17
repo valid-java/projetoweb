@@ -1,0 +1,33 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:form>
+
+		<nav class="aw-menu">
+			<ul>
+				<li><h:link>
+						<i class="fa  fa-fw  fa-home"></i>Dashboard</h:link></li>
+			</ul>
+		</nav>
+
+		<p:growl id="messages" showDetail="false" />
+
+		<p:menu toggleable="true" style="width: 210px; border:0px;">
+
+			<p:submenu label="Administration">
+
+				<p:menuitem value="Manager Users" update="messages"
+					icon="ui-icon-disk" outcome="/limited/users.xhtml" />
+
+				<p:menuitem value="Add New User" update="messages"
+					icon="ui-icon-arrowrefresh-1-w" />
+
+			</p:submenu>
+
+		</p:menu>
+
+	</h:form>
+
+</ui:composition>

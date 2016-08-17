@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<f:facet name="first">
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+	</f:facet>
+	<h:outputStylesheet library="sgpvalid" name="styles/customLogin.css" />
+	<h:outputStylesheet library="sgpvalid" name="styles/layout.css" />
+	<h:outputStylesheet library="sgpvalid" name="styles/components.css" />
+
+	<h:outputScript target="body" library="primefaces" name="jquery/jquery.js" />
+	<h:outputScript target="body" library="sgpvalid"	name="javascripts/app.js" />
+</h:head>
+
+<h:body>
+
+	<header class="aw-topbar">
+		<h:graphicImage library="sgpvalid" name="images/logo_valid2.png" />
+	</header>
+
+	<section class="aw-content  js-content">
+		<ui:insert name="content" />
+	</section>
+
+</h:body>
+
+</html>

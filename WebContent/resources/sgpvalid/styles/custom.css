@@ -1,0 +1,54 @@
+/* BASE */
+body {
+	margin: 0;
+	font-size: 13px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.img {
+	margin-top: 10px  !important;
+    margin-left: 30px !important;
+    margin-bottom: -20px !important;
+	}
+
+/* TABVIEW */
+.ui-tabs .ui-tabs-nav li.ui-tabs-selected a {
+	color: #555;
+}
+
+@media (max-width: 640px) {
+	.ui-tabs.ui-tabs-top > .ui-tabs-nav li {
+		width: 100%;
+	}
+}
+
+/* PANELGRID */
+.ui-panelgrid.panelgrid-noborder .ui-grid-responsive {
+	border: none;
+}
+
+@media (max-width: 640px) {
+	.ui-panelgrid.panelgrid-noborder .ui-grid-responsive .ui-grid-row {
+		border: none;
+	}
+}
+
+.usuarioLogado {
+	float: right;
+	color: write;
+	font-style: italic;
+	font-weight: bolder;
+}
+
+.aw-topbar > img {
+	margin-top: 10px  !important;
+    margin-left: 30px !important;
+    margin-bottom: -20px !important;
+	}
+	
+.aw-toggle {
+    float: right !important;
+    line-height: 65px !important;
+    margin-right: 15px !important;
+    color: #fff !important;
+}

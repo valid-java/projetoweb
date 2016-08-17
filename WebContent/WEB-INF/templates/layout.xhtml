@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<f:facet name="first">
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+	</f:facet>
+
+	<title>SGP - Valid</title>
+
+	<h:outputStylesheet library="sgpvalid" name="styles/custom.css" />
+	<h:outputStylesheet library="sgpvalid" name="styles/layout.css" />
+	<h:outputStylesheet library="sgpvalid" name="styles/components.css" />
+	
+	<h:outputScript target="body" library="primefaces" name="jquery/jquery.js" />
+	<h:outputScript target="body" library="sgpvalid" name="javascripts/app.js" />
+</h:head>
+
+<h:body>
+
+	<header class="aw-topbar">
+		<h:form >
+			<p:growl autoUpdate="true" />		
+			<h:graphicImage library="sgpvalid" name="images/logo_valid2.png"  styleClass="img"/>
+			<span class="aw-toggle-userLogged">Usuário Logado: #{usuarioLogadoBean.usuario.login} | <h:commandLink action="#{loginBean.logout()}"  value="[Sair]"/></span>
+			<a href="#" class="aw-toggle  js-toggle"><i class="fa  fa-bars"></i></a>
+			
+		</h:form>
+		
+		<p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()"/>
+		
+		<p:panelGrid columns="1">
+		
+			<p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false" styleClass="aw-wait-icon" responsive="true">
+				<p:graphicImage library="sgpvalid" name="images/progressbar.gif"/>
+			</p:dialog>
+		
+		</p:panelGrid>
+		
+	</header>
+	
+	<aside class="aw-sidebar  js-sidebar">
+		<ui:include src="menu.xhtml" />
+	</aside>
+	
+	<section class="aw-content  js-content">
+		<ui:insert name="content" />
+	</section>
+	
+</h:body>
+</html>

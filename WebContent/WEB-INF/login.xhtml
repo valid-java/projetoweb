@@ -1,0 +1,53 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/layoutLogin.xhtml">
+
+	<ui:define name="content">
+		<p:tooltip />
+		
+		<h:form id="frm" style="alignment-adjust:central;">
+		
+			<p:growl autoUpdate="true" />
+		
+			<div id="principal" class="login">
+		
+				<p:layout style="min-width:300px; min-height:230px; height:230px; background-color: transparent !important;  background: transparent !important" id="layout">
+				
+					<p:layoutUnit position="west" resizable="false" size="100" minSize="300" style="border-width: 0 5px 0 0">
+						
+						<div class="msg1">Seja bem vindo</div>
+						
+						<br />
+					
+						<div class="msg2">Identifique-se por favor para utilizar o sistema.</div>
+					
+						<br />
+					
+						<h:panelGrid columns="2" style="background: transparent; background-color: transparent;">
+							<p:outputLabel value="Login: " for="nome" />
+							<p:inputText id="nome" label="Nome" required="true" value="#{loginBean.usuario.login}" />
+							<p:outputLabel value="Senha: " for="senha" />
+							<p:password id="senha" label="Senha" required="true" value="#{loginBean.usuario.senha}"/>
+						</h:panelGrid>
+						
+						<br />
+						
+						<p:commandButton value="Entrar" library="sgpvalid" icon="/images/setaParaDireita.jpg" action="#{loginBean.efetuaLogin}" />
+					
+					</p:layoutUnit>
+					
+					<p:layoutUnit position="center" resizable="true" size="220 " minSize="250" style="border-color: transparent !important; width:200px; ">
+						<h:graphicImage library="sgpvalid" name="/images/senha.png" style="width: 200px; height: 200px;" />
+					</p:layoutUnit>
+					
+				</p:layout>
+				
+			</div>
+			
+		</h:form>
+		
+	</ui:define>
+</ui:composition>

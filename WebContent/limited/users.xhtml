@@ -1,0 +1,91 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/layout.xhtml">
+
+	<ui:define name="content">
+		<h1 class="aw-page-title">Usuários do Sistema</h1>
+		<h:form>
+				<p:toolbar>
+				<f:facet name="left">
+					<p:commandButton value="Modal" type="button" onclick="PF('dlgAddUser').show();" />
+
+					<span class="ui-separator"> <span
+						class="ui-icon ui-icon-grip-dotted-vertical" />
+					</span>
+
+					<p:commandButton icon="ui-icon-arrowthick-1-s"
+						title="Exportar para XLS" />
+				</f:facet>
+			</p:toolbar>
+		</h:form>
+		
+		<h:form id="frmTblUsr">
+			<p:dataTable value="#{usuarioBean.usuarios}" var="usuarios" emptyMessage="Nenhum usuario cadastrado." rows="5" paginator="true"
+				paginatorPosition="bottom" style="margin-top: 10px" id="usuarios-table" paginatorAlwaysVisible="false"
+				rowStyleClass="#{usuario.ativo eq false ?  'highlight1' : null}">
+					<center>
+							<p:column headerText="Id">
+								<h:outputText value="#{usuarios.id}" />
+							</p:column>
+							<p:column headerText="Nome">
+								<h:outputText value="#{usuarios.nome}" />
+							</p:column>
+							<p:column headerText="Login">
+								<h:outputText value="#{usuarios.login}" />
+							</p:column>
+							<p:column headerText="Administrator">
+								<h:outputText value="#{usuarios.administrator}" />
+							</p:column>
+							<p:column headerText="Usuário Convencional">
+								<h:outputText value="#{usuarios.conventionalUser}" />
+							</p:column>
+							<p:column headerText="Ativo">
+								<h:outputText value="#{usuarios.ativo}" />
+							</p:column>
+					</center>
+			</p:dataTable>
+		</h:form>
+
+		<p:dialog header="Novo Usuário" widgetVar="dlgAddUser" modal="true"  width="680" height="480" responsive="true">
+			<h:form id="frmAddUsr" >
+			<div class="ui-fluid">
+					<p:panelGrid columns="2" layout="grid" columnClasses="rotulo, campo" style="width: 100%; margin-top: 20px;">
+						<p:outputLabel for="nome" value="Nome: " />
+						<p:inputText id="nome" value="#{usuarioBean.usuario.nome}"  />
+		
+						<p:outputLabel for="login" value="Login: " />
+						<p:inputText id="login" value="#{usuarioBean.usuario.login}" />
+		
+						<p:outputLabel for="senha" value="Senha: " />
+						<p:password id="senha" value="#{usuarioBean.usuario.senha}"  feedback="true" promptLabel="Insira sua senha"
+							weakLabel="Fraca" goodLabel="Boa" strongLabel="Muito Boa"/>
+						<p:outputLabel for="senhaConfirmacao" value="Confirme: " />
+						<p:password id="senhaConfirmacao" value="#{usuarioBean.usuario.senha}"  required="true"/>
+		
+						<p:outputLabel for="departamento" value="Departamento: " />
+						<p:inputText id="departamento" value="#{usuarioBean.usuario.departamento}" />
+		
+						<p:outputLabel for="administrator" value="Administrator: " />
+						<p:selectBooleanCheckbox id="administrator" value="#{usuarioBean.usuario.administrator}" />
+		
+						<p:outputLabel for="conventionalUser" value="Usuario convencional: " />
+						<p:selectBooleanCheckbox id="conventionalUser" value="#{usuarioBean.usuario.conventionalUser}" />
+		
+						<p:outputLabel for="ativo" value="Ativo: " />
+						<p:selectBooleanCheckbox id="ativo" value="#{usuarioBean.usuario.ativo}" />
+		
+						<p:commandButton id="btnAddUsuario" value="Salvar" action="#{usuarioBean.adicionaUsuario}" 
+						update=":frmTblUsr"   oncomplete="if (!args.validationFailed) PF('dlgAddUser').hide()"  validateClient="true"/>
+						
+						<p:button id="btnVoltar" value="voltar"	outcome="/limited/principal.xhtml" />
+					
+					</p:panelGrid>
+				</div>
+			</h:form>
+		</p:dialog>
+	</ui:define>
+
+</ui:composition>
