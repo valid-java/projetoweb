@@ -1,0 +1,37 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/layout.xhtml">
+
+	<ui:define name="content">
+		<h1 class="aw-page-title">Página Principal</h1>
+
+		<h:form id="frm">
+			<div id="center">
+				<p:growl id="growl" />
+
+				<h3>Ajax ProgressBar</h3>
+				<p:commandButton value="Start" onclick="PF('pbAjax').start(); PF('startButton2').disable();" 
+												widgetVar="startButton2"  action="#{progressBarView.atualizaBarra}"/>
+				
+				<p:commandButton value="Cancel" actionListener="#{progressBarView.cancel}"  oncomplete="PF('pbAjax').cancel();PF('startButton2').enable();" />
+				<br /> <br />
+				
+				<p:progressBar widgetVar="pbAjax" ajax="true"  value="#{progressBarView.progress}" labelTemplate="{value}%" styleClass="animated" global="false" interval="1000">
+					<p:ajax event="complete" listener="#{progressBarView.onComplete}"
+						update="growl" oncomplete="PF('startButton2').enable()" />
+				</p:progressBar>
+
+				<style type="text/css">
+						.animated .ui-progressbar-value {
+							background-image:
+								url("/showcase/javax.faces.resource/demo/images/pbar-ani.gif.xhtml");
+					}
+</style>
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
